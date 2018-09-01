@@ -42,7 +42,7 @@
 
     <info.hoang8f.widget.FButton
         android:id="@+id/btnSignUp"
-        android:text="Sign Up"
+        android:text="Buddy Sign Up"
         android:textColor="@android:color/white"
         android:layout_weight="1"
         android:layout_width="0dp"
