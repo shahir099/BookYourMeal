@@ -11,6 +11,8 @@ public class Order {
     private String Price;
     private String Discount;
 
+    private String needToDelete;
+
     public Order() {
     }
 
