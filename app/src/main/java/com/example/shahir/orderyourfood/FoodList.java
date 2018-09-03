@@ -112,7 +112,6 @@ public class FoodList extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
     }*/
