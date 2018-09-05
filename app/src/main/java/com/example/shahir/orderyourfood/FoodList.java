@@ -1,5 +1,6 @@
 package com.example.shahir.orderyourfood;
 
+import android.accessibilityservice.GestureDescription;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -77,10 +78,10 @@ public class FoodList extends AppCompatActivity {
         materialSearchBar = (MaterialSearchBar) findViewById(R.id.searchBar);
         materialSearchBar.setHint("Enter your restaurant name");
         //materialSearchBar.setSpeechMode(false);  No need , because we have write this in xml
-        //loadSuggest(); // write fuction to load suggestions form firebase
+        loadSuggest(); // write fuction to load suggestions form firebase
         materialSearchBar.setLastSuggestions(suggestList);
         materialSearchBar.setCardViewElevation(10);
-        materialSearchBar.addTextChangeListener(new TextWatcher() {  /// TextWatcher is a useful class provided by the Android Developer API. It can be used to watch a input text field and you can instantly update data on other views. It can be useful for counting the number of characters entered in the text field instantly and measuring password strength on entering etc.
+        materialSearchBar.addTextChangeListener(new TextWatcher() {  /// TextWatcher is a useful class provided by the Android Developer API. It can be used to watch a input text field and you can instantly update data on other views. It can be useful for counting the number of characters entered in the text field instantly etc.
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -88,7 +89,15 @@ public class FoodList extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //when user will type we gonna change suggest list
 
+                List<String> suggest = new ArrayList<String>();
+                for(String search:suggest){
+                    if (search.toLowerCase().contains(materialSearchBar.getText().toLowerCase())){
+                        suggest.add(search);
+                    }
+                    materialSearchBar.setLastSuggestions(suggest);
+                }
             }
 
             @Override
@@ -97,10 +106,58 @@ public class FoodList extends AppCompatActivity {
             }
         });
 
+        materialSearchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
+            @Override
+            public void onSearchStateChanged(boolean enabled) {
+                //when search bar is closed , restore orginal suggest adapter
+                if(!enabled) recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onSearchConfirmed(CharSequence text) {
+                //when search is finished , show result of the search adapter
+                startSearch(text);
+            }
+
+            @Override
+            public void onButtonClicked(int buttonCode) {
+
+            }
+        });
+
     }
 
-    /*private void loadSuggest() {
-        foodList.orderByChild("MenuId".equals(categoryId)).addValueEventListener(new ValueEventListener() {
+    private void startSearch(CharSequence text) {
+        searchAdapter= new FirebaseRecyclerAdapter<Food, FoodViewHolder>(
+                Food.class,
+                R.layout.food_item,
+                FoodViewHolder.class,
+                foodList.orderByChild("Name").equalTo(text.toString()) /// comparing to name
+        ) {
+            @Override
+            protected void populateViewHolder(FoodViewHolder viewHolder, Food model, int position) {
+                viewHolder.food_name.setText(model.getName());
+                Picasso.with(getBaseContext()).load(model.getImage())
+                        .into(viewHolder.food_image);
+                final Food local=model;
+                viewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        /// StartNew Activity
+                        Intent foodDetail=new Intent(FoodList.this,FoodDetail.class);
+                        foodDetail.putExtra("FoodId",searchAdapter.getRef(position).getKey());
+                        startActivity(foodDetail);
+                    }
+                });
+            }
+
+        };
+        recyclerView.setAdapter(searchAdapter); /// set adapter for Recycler view  is search result
+    }
+
+    private void loadSuggest() {
+        foodList.orderByChild("MenuId").equalTo(categoryId)
+                .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot postSnapshot:dataSnapshot.getChildren()){
@@ -115,7 +172,7 @@ public class FoodList extends AppCompatActivity {
 
             }
         });
-    }*/
+    }
 
     private void loadListFood(String categoryId) {
         adapter=new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class,
@@ -125,7 +182,7 @@ public class FoodList extends AppCompatActivity {
                 ) {
             @Override
             protected void populateViewHolder(FoodViewHolder viewHolder, Food model, int position) {
-                viewHolder.food_name.setText(model.getName());
+               viewHolder.food_name.setText(model.getName());
                 Picasso.with(getBaseContext()).load(model.getImage())
                         .into(viewHolder.food_image);
 
