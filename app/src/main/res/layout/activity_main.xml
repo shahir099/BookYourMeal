@@ -53,18 +53,17 @@
         android:background="#6dc066"
        />
 
-    <info.hoang8f.widget.FButton
-        android:id="@+id/btnSignIn"
-        android:text="Sign In"
-        android:textColor="@android:color/white"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:buttonColor="@color/btnSignActive"
-        android:layout_margin="8dp"
-        app:shadowColor="@android:color/black"
-        android:background="#6dc066"
-        />
+        <info.hoang8f.widget.FButton
+            android:id="@+id/btnSignIn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="#6dc066"
+            android:text="Sign In Yoo"
+            android:textColor="@android:color/white"
+            app:buttonColor="@color/btnSignActive"
+            app:shadowColor="@android:color/black" />
 
     </LinearLayout>
 
