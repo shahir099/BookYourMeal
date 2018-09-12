@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.example.shahir.orderyourfood.R;
 
 public class MainActivity extends AppCompatActivity {
-
+    int test=0;
     Button btnSignIn,btnSignUp;
     TextView txtSlogan;
 
