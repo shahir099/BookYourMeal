@@ -9,4 +9,14 @@ import com.example.shahir.orderyourfood.Model.User;
 public class Common {
 
     public static User currentUser;
+
+    public static String convertCodeToStatus(String status) {
+
+        if(status.equals("0")) return "Order Placed";
+
+        else if(status.equals("1")) return "Looking For Your Table";
+
+        else return "Table Booked";
+
+    }
 }
