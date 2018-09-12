@@ -4,8 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.example.shahir.orderyourfood.Common.Common;
+import com.example.shahir.orderyourfood.Interface.ItemClickListener;
 import com.example.shahir.orderyourfood.Model.Request;
 import com.example.shahir.orderyourfood.ViewHolder.OrderViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -59,6 +61,13 @@ public class OrderStatus extends AppCompatActivity {
                 viewHolder.txtOrderStatus.setText(Common.convertCodeToStatus(model.getStatus()));
                 viewHolder.txtOrderAddress.setText(model.getAddress());
                 viewHolder.txtOrderPhone.setText(model.getPhone());
+
+                viewHolder.setItemClickListener(new ItemClickListener() {
+                    @Override
+                    public void onClick(View view, int position, boolean isLongClick) {
+                        /// click korle crash korbe na . code pore likhbo
+                    }
+                });
             }
         };
         recyclerView.setAdapter(adapter);
@@ -66,7 +75,7 @@ public class OrderStatus extends AppCompatActivity {
 
     private String convertCodeToStatus(String status) {
 
-        if(status.equals("0")) return "Order Placed";
+        if(status.equals("0")) return "Order Received";
 
         else if(status.equals("1")) return "Looking For Your Table";
 
