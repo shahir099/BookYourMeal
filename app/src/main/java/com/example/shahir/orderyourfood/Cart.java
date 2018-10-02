@@ -1,5 +1,6 @@
 package com.example.shahir.orderyourfood;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,8 @@ import java.util.List;
 import java.util.Locale;
 
 import info.hoang8f.widget.FButton;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class Cart extends AppCompatActivity {
 
@@ -42,9 +45,26 @@ public class Cart extends AppCompatActivity {
 
     CartAdapter adapter;
 
+
+    ///ctrl+o
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        /// Font we will add before setContentView
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+        .setDefaultFontPath("fonts/restaurant_font.otf")
+                .setFontAttrId(R.attr.fontPath)
+                .build());
+
         setContentView(R.layout.activity_cart);
 
 
@@ -128,7 +148,7 @@ public class Cart extends AppCompatActivity {
 
     private void loadListFood() {
         cart=new Database(this).getCarts();
-        adapter=new CartAdapter(cart,this);
+        adapter=new CartAdapter(cart,this,Cart.this);
         recyclerView.setAdapter(adapter);
 
         //calculate total

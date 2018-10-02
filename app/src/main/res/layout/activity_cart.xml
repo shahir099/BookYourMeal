@@ -62,7 +62,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:buttonColor="@color/btnSignActive"
+                app:fButtonColor="@color/btnSignActive"
                 android:layout_margin="8dp"
                 app:shadowColor="@android:color/black"
                 />
