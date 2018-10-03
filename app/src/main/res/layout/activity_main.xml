@@ -40,30 +40,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <info.hoang8f.widget.FButton
-        android:id="@+id/btnSignUp"
-        android:text="Sign Up"
-        android:textColor="@android:color/white"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        app:fButtonColor="#264f42"
-        android:layout_margin="8dp"
-        app:shadowColor="@android:color/black"
-        android:layout_height="wrap_content"
-        android:background="#6dc066"
-       />
-
         <info.hoang8f.widget.FButton
-            android:id="@+id/btnSignIn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:background="#6dc066"
-            android:text="Sign In"
+            android:id="@+id/btn_continue"
+            android:text="CONTINUE"
             android:textColor="@android:color/white"
+            android:layout_weight="2"
+            android:layout_width="0dp"
             app:fButtonColor="@color/btnSignActive"
-            app:shadowColor="@android:color/black" />
+            android:layout_margin="8dp"
+            app:shadowColor="@android:color/black"
+            android:layout_height="wrap_content"
+            android:background="#6dc066"
+            />
+
+        <!--        <info.hoang8f.widget.FButton
+                    android:id="@+id/btnSignIn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:background="#6dc066"
+                    android:text="Sign In"
+                    android:textColor="@android:color/white"
+                    app:fButtonColor="#264f42"
+                    app:shadowColor="@android:color/black" />-->
 
     </LinearLayout>
 
