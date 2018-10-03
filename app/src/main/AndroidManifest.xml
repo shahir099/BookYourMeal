@@ -36,12 +36,14 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".OrderStatus"></activity>
+        <activity android:name=".OrderStatus" />
 
         <service
             android:name=".Service.ListenOrder"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".TestFoodDetail"></activity>
     </application>
 
 </manifest>

@@ -46,7 +46,7 @@
         android:textColor="@android:color/white"
         android:layout_weight="1"
         android:layout_width="0dp"
-        app:buttonColor="#264f42"
+        app:fButtonColor="#264f42"
         android:layout_margin="8dp"
         app:shadowColor="@android:color/black"
         android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
             android:background="#6dc066"
             android:text="Sign In"
             android:textColor="@android:color/white"
-            app:buttonColor="@color/btnSignActive"
+            app:fButtonColor="@color/btnSignActive"
             app:shadowColor="@android:color/black" />
 
     </LinearLayout>

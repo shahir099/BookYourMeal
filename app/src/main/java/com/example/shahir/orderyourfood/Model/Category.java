@@ -1,5 +1,7 @@
 package com.example.shahir.orderyourfood.Model;
 
+import com.google.firebase.database.PropertyName;
+
 /**
  * Created by ShahiR on 2/24/2018.
  */
@@ -7,15 +9,27 @@ package com.example.shahir.orderyourfood.Model;
 public class Category {
     private  String Name;
     private String Image;
+    private  String menuId;
 
     public Category() {
 
     }
 
+    @PropertyName("MenuId")
+    public String getMenuId() {
+        return menuId;
+    }
 
-    public Category(String name, String image) {
+    @PropertyName("MenuId")
+    public void setMenuId(String menuId) {
+        this.menuId = menuId;
+    }
+
+    public Category(String name, String image, String MenuId) {
         Name = name;
         Image = image;
+        menuId=MenuId;
+
     }
 
     public String getName() {
